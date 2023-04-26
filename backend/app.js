@@ -7,6 +7,9 @@ const mongoose = require('mongoose');
 // la const app appelera la fonction pour créer l'application express
 const app = express();
 
+// importation du router
+const userRoutes = require('./routes/users');
+
 mongoose.connect('mongodb+srv://kenneth_vandenbilcke_1210:Edenhazard_1017@clusterp6.un7vfkj.mongodb.net/test?retryWrites=true&w=majority',
   { useNewUrlParser: true,
     useUnifiedTopology: true })
@@ -36,6 +39,9 @@ app.use('/api/sauces', (req, res, next) => {
   // Envoi d'une réponse réussi 200
   res.status(200).json(sauces);
 });
+
+
+app.use('/api/auth', userRoutes);
 
 module.exports = app;
 
